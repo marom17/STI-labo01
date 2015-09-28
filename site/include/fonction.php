@@ -108,7 +108,7 @@ function searchMail(){
 	
 	$result = $file_db->query("SELECT * FROM messages
 	JOIN messutil ON messutil.idmessage=messages.id
-	WHERE idutilisateur='{$_SESSION['id']}' ORDER BY datereception ASC");
+	WHERE idutilisateur='{$_SESSION['id']}' ORDER BY datereception DESC");
 	
 	foreach($result as $row){
 		echo '<tr>';
@@ -175,6 +175,81 @@ function changePass($p1,$p2){
 	
 	$file_db=null;
 	return $valide;
+}
+
+
+function searchUsers(){
+	
+	$file_db = sqliteConnect();
+	
+	$result = $file_db->query("SELECT utilisateurs.id,login,enable,roles.name FROM utilisateurs
+	JOIN roles ON roles.id=utilisateurs.role ORDER BY utilisateurs.id ASC");
+	
+	foreach($result as $row){
+		echo '<tr>';
+		echo '<th>'.$row['id'].'</th>';
+		echo '<th>'.$row['login'].'</th>';
+		echo '<th>'.$row['enable'].'</th>';
+		echo '<th>'.$row['name'].'</th>';
+		echo '<th>';
+				?>
+		<form action="" method="post">
+		
+		<input id="iduser" type="hidden" name="iduser" value="<?php echo $row['id']; ?>">
+		<!-- Button (Double) -->
+  <div class="col-md-8">
+	<button id="edit" name="edit" class="btn" type="submit">Edit</button>
+    <button id="del" name="del" class="btn btn-danger" type="submit">Delete</button>
+</div>
+		
+		</form>
+		<?php
+		echo '</th>';
+		echo '</tr>';
+	}
+	
+	$file_db=null;
+	
+}
+
+function deleteUser($id){
+	$file_db = sqliteConnect();
+	$file_db->exec("DELETE FROM utilisateurs WHERE id='{$id}'");
+	$file_db=null;
+}
+
+function editUser($id,$p1,$p2,$enable,$role){
+	$file_db = sqliteConnect();
+	
+	$valide=false;
+	
+	if($p1==$p2){
+	$crypt=sha1($password);
+	$file_db->exec("UPDATE utilisateurs SET password='{$crypt}',enable='{$enable}',role='${role}' WHERE id='{$id}'");
+	$valide=true;
+	}
+	
+	
+	$file_db=null;
+	
+	return $valide;
+}
+
+function newUser($login,$p1,$p2,$role,$enable){
+	$valide=false;
+	
+	
+	$file_db = sqliteConnect();
+	if($p1==$p2){
+	$crypt=sha1($password);
+	$file_db->exec("INSERT INTO utilisateurs(login,password,enable,role)
+	VALUES ('{$login}','{$crypt}','{$enable}','{$role}')");
+	$valide=true;
+	}
+	$file_db=null;	
+	
+	return $valide;
+	
 }
 
 ?>

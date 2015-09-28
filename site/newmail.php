@@ -89,7 +89,8 @@ if(isSet($_POST['send'])){
 	else{
 		echo '<input id="to" name="to" type="text" placeholder="To" class="form-control input-md" 
 		required="" value="'.$_SESSION['answer'].'">';
-		$_SESSION['answer']=null;
+		unset($_SESSION['answer']);
+		//$_SESSION['answer']=null;
 	}
    ?>
   </div>

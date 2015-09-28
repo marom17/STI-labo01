@@ -13,7 +13,6 @@
           <ul class="nav navbar-nav">
             <li><a href="index.php">Home</a></li>
             <li><a href="newmail.php">New Mail</a></li>
-            <!--<li><a href="contact.php">Contact-nous</a></li>-->
             <li><a href="newPass.php">Change password</a></li>
 			<?php
 			if(isAdmin()){
