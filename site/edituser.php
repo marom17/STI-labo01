@@ -89,7 +89,7 @@ if(isset($_POST['ok'])){
 <div class="form-group">
   <label class="col-md-4 control-label" for="password">Password</label>
   <div class="col-md-4">
-    <input id="password" name="password" type="password" placeholder="password" class="form-control input-md" required="">
+    <input id="password" name="password" type="password" placeholder="password" class="form-control input-md">
     
   </div>
 </div>
@@ -98,7 +98,7 @@ if(isset($_POST['ok'])){
 <div class="form-group">
   <label class="col-md-4 control-label" for="passwordretape">Retape</label>
   <div class="col-md-4">
-    <input id="passwordretape" name="passwordretape" type="password" placeholder="password" class="form-control input-md" required="">
+    <input id="passwordretape" name="passwordretape" type="password" placeholder="password" class="form-control input-md">
     
   </div>
 </div>

@@ -223,10 +223,16 @@ function editUser($id,$p1,$p2,$enable,$role){
 	
 	$valide=false;
 	
+	if($p1==""){
+		$file_db->exec("UPDATE utilisateurs SET enable='{$enable}',role='${role}' WHERE id='{$id}'");
+		$valide=true;
+	}
+	else{
 	if($p1==$p2){
-	$crypt=sha1($password);
+	$crypt=sha1($p1);
 	$file_db->exec("UPDATE utilisateurs SET password='{$crypt}',enable='{$enable}',role='${role}' WHERE id='{$id}'");
 	$valide=true;
+	}
 	}
 	
 	
@@ -241,7 +247,7 @@ function newUser($login,$p1,$p2,$role,$enable){
 	
 	$file_db = sqliteConnect();
 	if($p1==$p2){
-	$crypt=sha1($password);
+	$crypt=sha1($p1);
 	$file_db->exec("INSERT INTO utilisateurs(login,password,enable,role)
 	VALUES ('{$login}','{$crypt}','{$enable}','{$role}')");
 	$valide=true;
