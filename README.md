@@ -5,7 +5,7 @@
 1.	Dans un terminal, se rendre dans son home : cd ~
 2.	A l’aide de git, télécharger le repo du projet : git clone https://github.com/marom17/STI-labo01
 3.	Se rendre dans le dossier du projet : cd STI-labo01
-4.	Si install.sh **n’est pas en mode exécution**, le rendre exécutable : chmod +x install.sh
+4.	Si install.sh **n’a pas les droits d’exécution**, le rendre exécutable : chmod +x install.sh
 5.	Puis lancer le script d’installation en root ou avec sudo : sudo ./install.sh
 6.	Lancer le serveur Apache s’il n’est pas encore activé : sudo systemctl start httpd
 7.	Vous pouvez maintenant accéder au site : http://localhost/index.php
