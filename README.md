@@ -11,3 +11,18 @@
 7.	Vous pouvez maintenant accéder au site : http://localhost/index.php
 
 **Remarque** : si vous mettez la database à un autre endroits que celui par défaut, il vous faut modifier le  fichier include/fonction.php et mettre le lien vers le nouvel endroit.
+
+##Utilisation du projet
+Administrateur : User : rom ; Pass : kore
+
+Users : User : fa ; Pass : do
+
+L’onglet home vous permet de voir le mail que vous avez reçu, vous pouvez les lire, y répondre ou le suprimer
+
+L’onglet New Mail permet d’envoyer un mail à un utilisateur du système
+
+Change password permet de changer son mot de passe
+
+Administration n’apparait que pour un utilisateur administrateur. Il permet d’éditer, de supprimer ou de créer un nouvel utilisateur
+
+Logout permet de se délogger
