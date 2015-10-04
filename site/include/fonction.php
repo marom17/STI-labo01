@@ -8,7 +8,7 @@ function sqliteConnect(){
 	**********************/
 	try{
     // Create (connect to) SQLite database in file
-    $file_db = new PDO('sqlite:database/mail.sqlite');
+    $file_db = new PDO('sqlite:/var/www/databases/mail.sqlite');
     // Set errormode to exceptions
     $file_db->setAttribute(PDO::ATTR_ERRMODE, 
                             PDO::ERRMODE_EXCEPTION);	

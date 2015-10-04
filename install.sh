@@ -1,7 +1,9 @@
 #!/bin/bash
 
 DESTINATION="/var/www/html"
+DATABASE="/var/www/databases"
 APACHE_USER="apache"
+localOwner="sti"
 
 # To works correctly, this script must be run with root privilege.
 if [[ $EUID -ne 0 ]]
@@ -30,14 +32,20 @@ sleep 1
 
 echo -n "Copy files... " >&2
 cp -r site/* "$DESTINATION/"
+cp site/database/mail.sqlite "$DATABASE/"
 echo "Done" >&2
 
 cd "$DESTINATION"
 
 echo -n "Change group... " >&2
 chgrp -R "$APACHE_USER" *
+chmod 664 "$DATABASE/mail.sqlite"
+chgrp "$APACHE_USER" "$DATABASE/mail.sqlite"
+chown -R "$localOwner" *
+chown "$localOwner" "$DATABASE/mail.sqlite"
 echo "Done" >&2
 
 echo "Instalation finished!" >&2
 echo "Please start your apache server." >&2
+echo "write \"sudo systemctl start httpd\" for starting the web server" >&2
 echo "You can then open your browser to url http://localhost/index.php to chech the website." >&2
